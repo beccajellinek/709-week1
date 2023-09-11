@@ -1,2 +1,7 @@
 *.class
 target/
+*.nix
+.replit
+.breakpoints
+.project
+.settings
