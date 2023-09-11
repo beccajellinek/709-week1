@@ -34,7 +34,8 @@ class Time {
     // How much of the day has passed?
     // Alternatively you could figure out the percentage using secondsRemaining
     double percentage = (secondsSinceMidnight / SEC_PER_DAY) * 100;
-    System.out.println("Percentage of day that has passed: " + percentage);
+    System.out.printf("Percentage of day that has passed: %.2f", percentage);
+    System.out.println("%");
 
     // How much time has passed since I started working on this exercise?
     hour = 21;
