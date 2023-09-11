@@ -1,50 +1,53 @@
 class Time {
   public static void main(String[] args) {
     // These values shouldn't change
-    int secondsPerMinute = 60;
-    int minutesPerHour = 60;
-    int hoursPerDay = 24;
-    int secondsPerHour = secondsPerMinute * minutesPerHour;
-    
-    // Local time
+    final int SEC_PER_MIN = 60;
+    final int MIN_PER_HOUR = 60;
+    final int HOUR_PER_DAY = 24;
+    final int SEC_PER_HOUR = SEC_PER_MIN * MIN_PER_HOUR;
+    final double SEC_PER_DAY = SEC_PER_HOUR * HOUR_PER_DAY;
+
+    // Declare variables, may change throughout the program execution
     int hour = 20;
     int minute = 50;
     int second = 30;
     
-    double secondsSinceMidnight = getSecondsSinceMidnight(hour, minute, second);
+    double secondsSinceMidnight = 
+        (hour * SEC_PER_HOUR) + 
+        (minute * SEC_PER_MIN) + 
+        second;
     
     System.out.println("Number of seconds since midnight: " + secondsSinceMidnight);
 
     // Seconds remaining until midnight
     // Split up into hours/minutes/seconds
-    int hoursTillEndOfDay = hoursPerDay - hour;
-    int minutesTillEndOfHour = minutesPerHour - minute;
-    int secondsTillEndOfMinute = secondsPerMinute - second; 
+    int hoursTillEndOfDay = HOUR_PER_DAY - hour;
+    int minutesTillEndOfHour = MIN_PER_HOUR - minute;
+    int secondsTillEndOfMinute = SEC_PER_MIN - second; 
     // Convert each to seconds;
-    int hoursRemainingInSeconds = hoursTillEndOfDay * secondsPerHour;
-    int minutesRemainingInSeconds = minutesTillEndOfHour * secondsPerMinute;
+    int hoursRemainingInSeconds = hoursTillEndOfDay * SEC_PER_HOUR;
+    int minutesRemainingInSeconds = minutesTillEndOfHour * SEC_PER_MIN;
     int secondsRemainingInSeconds = secondsTillEndOfMinute + minutesRemainingInSeconds + hoursRemainingInSeconds;
 
     System.out.println("Number of seconds until midnight: " + secondsRemainingInSeconds);
 
     // How much of the day has passed?
-    double secondsInDay = secondsPerHour * hoursPerDay;
     // Alternatively you could figure out the percentage using secondsRemaining
-    double percentage = (secondsSinceMidnight / secondsInDay) * 100;
+    double percentage = (secondsSinceMidnight / SEC_PER_DAY) * 100;
     System.out.println("Percentage of day that has passed: " + percentage);
 
     // How much time has passed since I started working on this exercise?
-    double secondsCompleteExercise = getSecondsSinceMidnight(21, 12, 20);
+    hour = 21;
+    minute = 12;
+    second = 20;
+    
+    double secondsCompleteExercise =
+      (hour * SEC_PER_HOUR) + 
+      (minute * SEC_PER_MIN) + 
+      second;
+    
     double elapsedTime = secondsCompleteExercise - secondsSinceMidnight;
 
     System.out.println("Elapsed time (in seconds) to work on exercise: "+ elapsedTime);
-  }
-
-  private static double getSecondsSinceMidnight(int hour, int minute, int second) {
-    // These values shouldn't change
-    int secondsPerMinute = 60;
-    int minutesPerHour = 60;
-    int secondsPerHour = secondsPerMinute * minutesPerHour;
-    return (hour * secondsPerHour) + (minute * secondsPerMinute) + second;
   }
 }
